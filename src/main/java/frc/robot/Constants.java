@@ -1,7 +1,7 @@
 package frc.robot;
 
 // Projedeki bütün sabit sayılar burada durur.
-// Bir şeyi değiştirmek istersen (motor numarası gibi) sadece burayı değiştirirsin.
+// Bir şeyi değiştirmek istersen (motor numarası, hız gibi) sadece burayı değiştirirsin.
 public final class Constants {
 
   // Sürüş sistemi (drivetrain) ile ilgili sayılar.
@@ -22,7 +22,36 @@ public final class Constants {
     public static final boolean kRightInverted = true;
   }
 
-  // Joystick (operator interface) ile ilgili sayılar.
+  // Intake (oyun parçasını robotun içine alan mekanizma) ile ilgili sayılar.
+  public static final class IntakeConstants {
+    // Intake motorunun SPARK MAX CAN ID'si (NEO motor).
+    public static final int kMotorId = 5;
+
+    // Intake çalışırken verilecek hız (-1.0 ile 1.0 arası). Parça ters girerse eksi yap.
+    public static final double kIntakeSpeed = 0.6;
+
+    // NEO fırçasız (brushless) motor olduğu için smart current limit kullanılır (amper).
+    public static final int kCurrentLimitAmps = 40;
+  }
+
+  // Shooter (parçayı atan mekanizma) ile ilgili sayılar. 2 adet NEO motor var.
+  public static final class ShooterConstants {
+    // Lider motor ve onu takip eden motorun SPARK MAX CAN ID'leri.
+    public static final int kLeaderMotorId = 6;
+    public static final int kFollowerMotorId = 7;
+
+    // Atış sırasında verilecek hız (-1.0 ile 1.0 arası).
+    public static final double kShootSpeed = 0.8;
+
+    // İki motor birbirine bakıyorsa ikinci motorun ters dönmesi gerekir.
+    // Tekerlekler zıt yönde dönüyorsa bunu değiştir.
+    public static final boolean kFollowerInverted = false;
+
+    // NEO için akım limiti (amper).
+    public static final int kCurrentLimitAmps = 40;
+  }
+
+  // Kumanda (operator interface) ile ilgili sayılar.
   public static final class OIConstants {
     // Kumandanın bilgisayardaki numarası. İlk bağlanan kumanda genelde 0 olur.
     public static final int kDriverControllerPort = 0;
